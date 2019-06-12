@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
+import './App.css';
 
 
 class Nav extends React.Component {
@@ -22,7 +23,7 @@ class Nav extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="navigation">
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/friends" >Friends</NavLink>
                 <NavLink to="/addfriend" >Add Friend</NavLink>

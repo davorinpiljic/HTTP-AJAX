@@ -20,6 +20,7 @@ class InfoForm extends React.Component {
         return (
             <div>
                 <form>
+
                     <input type="text" 
                             placeholder="name" 
                             onChange={this.props.inputHandle}
@@ -43,6 +44,7 @@ class InfoForm extends React.Component {
                     </input>
                 </form>
                 <button onClick={this.props.addFriend}>Save Friend</button>
+
             </div>
         )
     }
