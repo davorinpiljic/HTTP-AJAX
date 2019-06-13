@@ -3,17 +3,18 @@ import axios from 'axios'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
-class InfoForm extends React.Component {
+class UpdateForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            friends: {
+            friends: this.props.activeItem || {
                 name: "",
                 age: null,
-                email: "",
-            }
+                email: "",        
+        
         }
     }
+}
     inputHandle = event => {
         this.setState({
             friends: {
@@ -24,20 +25,21 @@ class InfoForm extends React.Component {
         console.log(this.state.friends.name)
       }
 
-      addFriend = event => {
-          event.preventDefault()
-          this.props.addFriend(this.state.friends)
+      updateFriend = event => {
+          this.props.updateFriend(this.state.friends)
       }
-    //   updateFriend = event => {
-    //     event.preventDefault()
-    //     this.props.updateFriend(this.state.friends)
-    // }
 
     render() {
         return (
             <div>
                 <form>
-
+                <input type="text" 
+                            placeholder="name" 
+                            onChange={this.inputHandle}
+                            value={this.state.friends.name}
+                            name="name"
+                    >
+                    </input>
                     <input type="text" 
                             placeholder="name" 
                             onChange={this.inputHandle}
@@ -60,11 +62,11 @@ class InfoForm extends React.Component {
                     >
                     </input>
                 </form>
-                <button onClick={this.addFriend}>Save Friend</button>
+                <button onClick={this.updateFriend}>Update Friend</button>
                 {/* <button onClick={this.updateFriend}>Update Friend</button> */}
 
             </div>
         )
     }
 }
-export default InfoForm
+export default UpdateForm

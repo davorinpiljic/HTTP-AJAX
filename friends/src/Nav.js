@@ -27,6 +27,9 @@ class Nav extends React.Component {
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/friends" >Friends</NavLink>
                 <NavLink to="/addfriend" >Add Friend</NavLink>
+                <NavLink to="/updatefriend" >Update Friend</NavLink>
+
+                {/* <NavLink to={`/friends/${id}`}>something</NavLink> */}
             </div>
         )
     }
