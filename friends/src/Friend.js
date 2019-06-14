@@ -7,26 +7,29 @@ class Friend extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            friend: {}
+            friends: props.friends
         }
     }
 
-componentDidMount() {
-    axios
-        .get(`/friends/${this.props.match.params.id}`)
-        .then(response => {this.setState({friend: response.data})
-        console.log(this.state.friend)})
-        .catch(error => console.log(error))
-}
 
-deleteFriend = event => {
-    event.preventDefault()
-    this.props.deleteFriend(this.state.friend.id)
-}
+    updateFriend = (event, friend) => {
+        event.preventDefault()
+        this.props.setUpdateForm(friend)
+    }
+    deleteFriend = (event, friend) => {
+        event.preventDefault()
+        this.props.deleteFriend(friend)
+        this.props.history.push("/friends")
+    }
+    
+    
+
 
     render() {
-        return (
-            <h1>{this.state.friend.name}</h1>
+        return (<div>
+            <h1>{this.state.friends.name}</h1>
+            <button onClick={event => this.updateFriend(event, this.state.friends.id)}>Update</button>
+                    <button onClick={event => this.deleteFriend(event, this.state.friends)}>Delete</button></div>
         )
     }
 }

@@ -10,18 +10,29 @@ class Friends extends React.Component {
         }
     }
 
-    
-    updateFriend = event => {
+    updateFriend = (event, friend) => {
         event.preventDefault()
-        this.props.setUpdateForm(this.state.friends)
+        this.props.setUpdateForm(friend)
     }
-
+    deleteFriend = (event, friend) => {
+        event.preventDefault()
+        this.props.deleteFriend(friend)
+        this.props.history.push("/friends")
+    }
+    
     render() {
         return (
             <div>
                 <h1>{this.state.friends.map(friend => {
-                    return(<div> <h1>{friend.name}</h1>
-                    <button onClick={this.updateFriend}>update</button></div>)
+                    return(<div> <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                      <h1 class="display-4">{friend.name}</h1>
+                      <p class="lead">friend's e-mail is: {friend.email} and the friend's age is: {friend.age}</p>
+                      <button type="button" class="btn btn-primary" onClick={event => this.updateFriend(event, friend)}>Update</button>
+                    <button type="button" class="btn btn-danger" onClick={event => this.deleteFriend(event, friend)}>Delete</button>
+                    </div>
+                  </div>
+                    </div>)
                 })}</h1>
             </div>
         )

@@ -60,7 +60,7 @@ class InfoForm extends React.Component {
                     >
                     </input>
                 </form>
-                <button onClick={this.addFriend}>Save Friend</button>
+                <button type="button" class="btn btn-primary" onClick={this.addFriend}>Save Friend</button>
                 {/* <button onClick={this.updateFriend}>Update Friend</button> */}
 
             </div>

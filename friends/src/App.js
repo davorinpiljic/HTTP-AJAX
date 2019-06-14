@@ -3,8 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import axios from 'axios'
 
-
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 
 import Friends from './Friends'
 import Friend from './Friend'
@@ -12,7 +11,6 @@ import UpdateForm from './UpdateForm'
 
 import InfoForm from './InfoForm'
 import Nav from './Nav'
-
 
 class App extends React.Component {
   constructor() {
@@ -52,24 +50,38 @@ updateFriend = friend => {
         activeItem: null,
         friends: res.data
       })
+      this.props.history.push("/friends")
+
     })
-    this.props.history.push("/friends")
+    .catch(error => console.log(error))
+}
+
+deleteFriend = friend => {
+  axios
+    .delete(`http://localhost:5000/friends/${friend.id}`, friend)
+    .then(res => {
+      this.setState({
+        activeItem: null,
+        friends: res.data
+      })
+      this.props.history.push("/")
+      this.props.history.push("/friends")
+    })
+    .catch(error => console.log(error))
 }
 
 setUpdateForm = (friend) => {
-  this.setState({
-    activeItem: friend
+  this.setState({    activeItem: friend
   })
+  console.log(friend)
   this.props.history.push("/updatefriend")
 }
 
-  render() {
+render() {
   return (
-    <div className="App">
+    <div className="App container">
         <Nav />
-        <h1>{this.state.friends.map(friend => {
-          return friend.id
-        })}</h1>
+        <h1>Welcome to Friends App</h1>
       <div>
         <Route 
           exact path="/friends" 
@@ -77,6 +89,9 @@ setUpdateForm = (friend) => {
             <Friends {...props} 
               friends={this.state.friends} 
               setUpdateForm={this.setUpdateForm}
+            activeItem={this.state.activeItem}
+            deleteFriend={this.deleteFriend}
+
             />
           }
         />

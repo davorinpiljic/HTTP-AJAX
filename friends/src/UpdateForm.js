@@ -2,7 +2,6 @@ import React from 'react'
 import axios from 'axios'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-
 class UpdateForm extends React.Component {
     constructor(props) {
         super(props)
@@ -15,6 +14,18 @@ class UpdateForm extends React.Component {
         }
     }
 }
+
+componentDidUpdate(prevProps) {
+    if (
+        this.props.activeItem &&
+        prevProps.activeItem != this.props.activeItem
+      ) {
+        this.setState({
+          friends: this.props.activeItem
+        });
+      }
+}
+
     inputHandle = event => {
         this.setState({
             friends: {
@@ -23,23 +34,16 @@ class UpdateForm extends React.Component {
             }
         })
         console.log(this.state.friends.name)
-      }
+    }
 
-      updateFriend = event => {
+    updateFriend = event => {
           this.props.updateFriend(this.state.friends)
-      }
+    }
 
     render() {
         return (
             <div>
                 <form>
-                <input type="text" 
-                            placeholder="name" 
-                            onChange={this.inputHandle}
-                            value={this.state.friends.name}
-                            name="name"
-                    >
-                    </input>
                     <input type="text" 
                             placeholder="name" 
                             onChange={this.inputHandle}
@@ -50,21 +54,19 @@ class UpdateForm extends React.Component {
                     <input type="text" 
                             placeholder="age" 
                             onChange={this.inputHandle}
-                            value={this.state.age} 
+                            value={this.state.friends.age} 
                             name="age"
                     >
                     </input>
                     <input type="text" 
                             placeholder="email" 
                             onChange={this.inputHandle}
-                            value={this.state.email} 
+                            value={this.state.friends.email} 
                             name="email"
                     >
                     </input>
                 </form>
-                <button onClick={this.updateFriend}>Update Friend</button>
-                {/* <button onClick={this.updateFriend}>Update Friend</button> */}
-
+                <button type="button" class="btn btn-primary" onClick={this.updateFriend}>Update Friend</button>
             </div>
         )
     }

@@ -12,24 +12,23 @@ class Nav extends React.Component {
         }
     }
 
-    componentDidMount() {
-        // axios
-        //     .get("http://localhost:5000/friends")
-        //     .then(response => this.setState( {friends: response.data}))
-        //     .catch(error => {
-        //         alert('no data')
-        //     })
-    }
-
     render() {
         return (
-            <div className="navigation">
-                <NavLink to="/">Home</NavLink>
-                <NavLink to="/friends" >Friends</NavLink>
-                <NavLink to="/addfriend" >Add Friend</NavLink>
-                <NavLink to="/updatefriend" >Update Friend</NavLink>
-
-                {/* <NavLink to={`/friends/${id}`}>something</NavLink> */}
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
+                    <ul class="nav-item">
+                        <NavLink to="/">Home</NavLink>
+                    </ul>
+                    <ul class="nav-item">
+                        <NavLink to="/friends" >Friends</NavLink>
+                    </ul>
+                    <ul class="nav-item">
+                        <NavLink to="/addfriend" >Add Friend</NavLink>
+                    </ul>
+                    <ul class="nav-item">
+                        <NavLink to="/updatefriend" >Update Friend</NavLink>  
+                    </ul>
+                </nav>               
             </div>
         )
     }
